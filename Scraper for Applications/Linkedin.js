@@ -1,6 +1,8 @@
 require("dotenv").config();
 const puppeteer = require("puppeteer");
 
+// Getting login details from another folder
+
 async function scrapeLinkedIn() {
     const browser = await puppeteer.launch({ headless: false });
     const page = await browser.newPage();
