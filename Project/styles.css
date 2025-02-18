@@ -1,0 +1,27 @@
+button {
+    padding: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin: 1rem;
+    border-radius: 15px;
+}
+
+.buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.job-info{
+    height: 20rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card{
+    background-color: green;
+    width: 15rem;
+    height: 100%;
+    border-radius: 15px;
+}

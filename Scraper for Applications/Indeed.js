@@ -11,7 +11,7 @@ async function scrapeIndeed() {
         await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36');
 
         // Navigate to Indeed
-        await page.goto('https://www.indeed.com/jobs?q=Software+Engineer&l=Remote', {
+        await page.goto('https://www.indeed.com/jobs?q=Software+Engineer&l=Remote', { // This is a valid link
             waitUntil: 'networkidle2',
         });
 
