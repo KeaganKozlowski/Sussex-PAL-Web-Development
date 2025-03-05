@@ -22,7 +22,7 @@ jobs:
         run: npm install
 
       - name: Use Repository Variables
-        run: echo "User: $USER, Password: [HIDDEN]"
+        run: echo "User: ${USER}, Password: [HIDDEN]"
         env:
           USER: ${{ vars.USER }}
           PASSWORD: ${{ vars.PASSWORD }}
