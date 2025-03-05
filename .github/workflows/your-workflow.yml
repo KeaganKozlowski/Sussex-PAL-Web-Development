@@ -34,7 +34,7 @@ jobs:
         run: ls -l #/home/runner/work/Sussex-PAL-Web-Development/Sussex-PAL-Web-Development
 
       - name: Directory Check
-        run: ls -l "/Project"
+        run: ls -l "Project/server.js"
 
      # - name: Start Backend
      #   run: node \Project\server.js
