@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout/@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -26,6 +28,12 @@ jobs:
         env:
           USER: ${{ vars.USER }}
           PASSWORD: ${{ vars.PASSWORD }}
+
+      - name: List Directory Contents
+        run: ls -l #/home/runner/work/Sussex-PAL-Web-Development/Sussex-PAL-Web-Development/
+
+      - name: Make server.js Executable
+        run: chmod +x server.js
 
       - name: Start Backend
         run: node server.js
