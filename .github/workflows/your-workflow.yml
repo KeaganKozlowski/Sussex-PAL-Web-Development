@@ -30,6 +30,6 @@ jobs:
       - name: Start Backend
         run: node server.js
         env:
-          USER: {{ vars.USER }}
-          PASSWORD: {{ vars.PASSWORD }}
+          USER: ${{ vars.USER }}
+          PASSWORD: ${{ vars.PASSWORD }}
       
