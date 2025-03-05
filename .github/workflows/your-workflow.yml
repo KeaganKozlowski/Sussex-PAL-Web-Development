@@ -3,32 +3,34 @@ name: Deploy Backend
 on:
   push:
     branches:
-      - main  # Change to match your deployment branch
+      - main 
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
+      steps:
+        - name: Checkout Code
+          uses: actions/checkout/@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18  # Change to your Node.js version
+        - name: Setup Node.js
+          uses: actions/setup-node:v4
+          with:
+            node-version: 18
 
-      - name: Install Dependencies
-        run: npm install
+        - name: Install Dependencies
+          run: npm install
 
-      - name: Use Repository Variables
-        run: echo "User: ${USER}, Password: [HIDDEN]"
-        env:
-          USER: ${{ vars.USER }}
-          PASSWORD: ${{ vars.PASSWORD }}
+        - name: Use Repository Variables
+          run: |
+            echo "User: $USER, Password: [HIDDEN]"
+          env:
+            USER: ${{ var.USER }}
+            PASSWORD: ${{ vars.PASSWORD }}
 
-      - name: Start Backend (Example)
-        run: node server.js
-        env:
-          USER: ${{ vars.USER }}
-          PASSWORD: ${{ vars.PASSWORD }}
+        - name: Start Backend
+          run: node server.js
+          env:
+            USER: {{ var.USER }}
+            PASSWORD: {{ vars.PASSWORD }}
+      
