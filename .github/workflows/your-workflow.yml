@@ -27,6 +27,9 @@ jobs:
           USER: ${{ vars.USER }}
           PASSWORD: ${{ vars.PASSWORD }}
 
+      - name: List Directory Contents
+        run: ls -l /home/runner/work/Sussex-PAL-Web-Development/Sussex-PAL-Web-Development/
+
       - name: Start Backend
         run: node server.js
         env:
