@@ -33,7 +33,7 @@ jobs:
         run: ls -l #/home/runner/work/Sussex-PAL-Web-Development/Sussex-PAL-Web-Development
 
       - name: Start Backend
-        run: node server.js
+        run: node ./server.js
         env:
           USER: ${{ vars.USER }}
           PASSWORD: ${{ vars.PASSWORD }}
