@@ -37,7 +37,9 @@ jobs:
      #   run: ls -l "Project/server.js"
 
       - name: Debug Environment Variables
-        run: printenv | GREP USER | GREP PASSWORD
+        run: |
+          printenv | grep USER
+          printenv | grep PASSWORD
         env:
           USER: ${{ vars.USER }}
           PASSWORD: ${{ vars.PASSWORD }}
