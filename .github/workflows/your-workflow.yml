@@ -33,8 +33,8 @@ jobs:
       - name: List Directory Contents
         run: ls -l #/home/runner/work/Sussex-PAL-Web-Development/Sussex-PAL-Web-Development
 
-      - name: Directory Check
-        run: ls -l "Project/server.js"
+     # - name: Directory Check
+     #   run: ls -l "Project/server.js"
 
       - name: Start Backend
         run: node "server.js"
