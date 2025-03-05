@@ -37,7 +37,7 @@ jobs:
         run: ls -l "Project/server.js"
 
       - name: Start Backend
-        run: node "Project\server.js"
+        run: node "/Project/server.js"
         env:
           USER: ${{ vars.USER }}
           PASSWORD: ${{ vars.PASSWORD }}
