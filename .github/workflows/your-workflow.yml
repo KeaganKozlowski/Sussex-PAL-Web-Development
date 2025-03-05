@@ -30,7 +30,10 @@ jobs:
           PASSWORD: ${{ vars.PASSWORD }}
 
       - name: List Directory Contents
-        run: ls -l /home/runner/work/Sussex-PAL-Web-Development/Sussex-PAL-Web-Development/
+        run: ls -l #/home/runner/work/Sussex-PAL-Web-Development/Sussex-PAL-Web-Development/
+
+      - name: Make server.js Executable
+        run: chmod +x server.js
 
       - name: Start Backend
         run: node server.js
