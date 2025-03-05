@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
-        uses: actions/checkout/@v4
+        uses: actions/checkout/@v2
         with:
           fetch-depth: 0
           clean: true
@@ -35,6 +35,13 @@ jobs:
 
      # - name: Directory Check
      #   run: ls -l "Project/server.js"
+
+      - name: Debug Environment Variables
+        run: printenv | grep USER
+        env:
+          USER: ${{ vars.USER }}
+          PASSWORD: ${{ vars.PASSWORD }}
+            
 
       - name: Start Backend
         run: node "server.js"
