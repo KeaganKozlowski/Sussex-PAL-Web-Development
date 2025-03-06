@@ -50,4 +50,5 @@ jobs:
         env:
           USER: ${{ vars.USER }}
           PASSWORD: ${{ vars.PASSWORD }}
+    timeout-minutes: 10
       
