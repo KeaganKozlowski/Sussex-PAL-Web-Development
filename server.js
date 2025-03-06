@@ -14,7 +14,7 @@ if (!process.env.USER || !process.env.PASSWORD) {
         host: 'krier.uscs.sussex.ac.uk',
         user: 'kk544',
         password: 'Mysql_627115',
-        database: 'your_database_name',
+        database: 'kk544',
         waitForConnections: true,
         connectionLimit: 10,
         queueLimit: 0
@@ -25,7 +25,7 @@ if (!process.env.USER || !process.env.PASSWORD) {
         host: 'krier.uscs.sussex.ac.uk',
         user: process.env.USER,
         password: process.env.PASSWORD,
-        database: 'your_database_name',
+        database: 'kk544',
         waitForConnections: true,
         connectionLimit: 10,
         queueLimit: 0
