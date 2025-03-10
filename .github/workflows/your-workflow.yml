@@ -1,0 +1,54 @@
+name: Deploy Backend
+
+on:
+  push:
+    branches:
+      - main 
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout/@v2
+        with:
+          fetch-depth: 0
+          clean: true
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Use Repository Variables
+        run: |
+          echo "User: $USER, Password: [HIDDEN]"
+        env:
+          USER: ${{ vars.USER }}
+          PASSWORD: ${{ vars.PASSWORD }}
+
+      - name: List Directory Contents
+        run: ls -l #/home/runner/work/Sussex-PAL-Web-Development/Sussex-PAL-Web-Development
+
+     # - name: Directory Check
+     #   run: ls -l "Project/server.js"
+
+      - name: Debug Environment Variables
+        run: |
+          printenv | grep USER
+          printenv | grep PASSWORD
+        env:
+          USER: ${{ vars.USER }}
+          PASSWORD: ${{ vars.PASSWORD }}
+            
+
+      - name: Start Backend
+        run: node "server.js"
+        env:
+          USER: ${{ vars.USER }}
+          PASSWORD: ${{ vars.PASSWORD }}
+    timeout-minutes: 10
+      
