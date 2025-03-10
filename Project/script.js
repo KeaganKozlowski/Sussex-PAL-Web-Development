@@ -2,20 +2,25 @@
 const card = document.getElementById("active-card");
 document.addEventListener("mousemove", onMouseMove);
 card.addEventListener("mouseenter", onMouseEnter);
-document.addEventListener("mousedown", onMouseDown);
+card.addEventListener("mousedown", onMouseDown);
 document.addEventListener("mouseup", onMouseUp);
 screenWidth = window.innerWidth;
 
 let mousePos = 0;
 let entered = false;
 let mouseDown = false;
+let startX = 0;
+let currentX = 0;
 
 function onMouseMove(event) {
-  const x = event.pageX;
-  mousePos = x;
+  if (!mouseDown) return;
 
-  if (entered && mouseDown) {
-    card.style.transform = "translateX(" + x + "px)";
+  const x = event.pageX;
+  currentX = x - startX;
+
+  if (entered) {
+    const rotation = (currentX / screenWidth) * 30; // Adjust rotation factor as needed
+    card.style.transform = `translateX(${currentX}px) rotate(${rotation}deg)`;
   }
 }
 
@@ -23,10 +28,13 @@ function onMouseUp(event) {
   mouseDown = false;
 
   if (entered) {
-    if (mousePos > screenWidth / 2) {
+    if (currentX > screenWidth / 4) {
       onRightClick();
-    } else {
+    } else if (currentX < -screenWidth / 4) {
       onLeftClick();
+    } else {
+      card.style.transition = "transform 0.5s";
+      card.style.transform = "translateX(0) rotate(0deg)";
     }
   }
 }
@@ -37,6 +45,8 @@ function onMouseEnter(event) {
 
 function onMouseDown(event) {
   mouseDown = true;
+  startX = event.pageX - currentX;
+  card.style.transition = "none";
 }
 
 function onLeftClick() {
@@ -48,12 +58,17 @@ function onRightClick() {
 }
 
 function animateCard(direction) {
-  // Get current card
-  const card = document.getElementById("active-card");
-
   card.style.transition = "transform 0.5s, opacity 0.5s";
-  // Animate the position
-  card.style.transform = "translateX(" + direction * 50 + "vw)";
-  // Animate the opacity
+  card.style.transform = `translateX(${direction * 100}vw) rotate(${
+    direction * 30
+  }deg)`;
   card.style.opacity = 0;
+
+  // Reset card position after animation
+  setTimeout(() => {
+    card.style.transition = "none";
+    card.style.transform = "translateX(0) rotate(0deg)";
+    card.style.opacity = 1;
+    currentX = 0;
+  }, 500);
 }
