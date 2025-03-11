@@ -5,12 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script src="./script.js" defer></script>
-    <script src = "./server.js" def></script>
+    <script src="./server.js" def></script>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <div class="job-info">
-      <div class="card" id="active-card"></div>
+      <div class="card" id="inactive-card">
+        <h1 class="card-header">Loading...</h1>
+        <p class="card-description">
+          This is a job offered by a company, apply now to get the job
+        </p>
+        <button class="card-button">Apply</button>
+        <div class="card-background"></div>
+      </div>
+      <div class="card" id="active-card">
+        <h1 class="card-header">Loading...</h1>
+        <p class="card-description">
+          This is a job offered by a company, apply now to get the job
+        </p>
+        <button class="card-button">Apply</button>
+        <div class="card-background"></div>
+      </div>
     </div>
 
     <div class="buttons">

@@ -137,4 +137,5 @@ dist
 
 .idea
 .vscode/
-Project copy/
+Active Project/
+.DS_Store

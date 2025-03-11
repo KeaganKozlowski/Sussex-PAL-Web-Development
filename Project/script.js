@@ -1,11 +1,19 @@
-// Event listeners
+const screenWidth = window.innerWidth;
 const card = document.getElementById("active-card");
+const inactiveCard = document.getElementById("inactive-card");
+
+// Event listeners
 document.addEventListener("mousemove", onMouseMove);
 card.addEventListener("mouseenter", onMouseEnter);
 card.addEventListener("mousedown", onMouseDown);
 document.addEventListener("mouseup", onMouseUp);
-screenWidth = window.innerWidth;
 
+let savedJobs = [];
+let currentCardIndex = 0;
+let cardData = ["Facebook", "Amazon", "Apple", "Netflix", "Google"];
+updateData();
+
+// Mouse variables
 let mousePos = 0;
 let entered = false;
 let mouseDown = false;
@@ -66,9 +74,22 @@ function animateCard(direction) {
 
   // Reset card position after animation
   setTimeout(() => {
+    SaveJob();
     card.style.transition = "none";
     card.style.transform = "translateX(0) rotate(0deg)";
     card.style.opacity = 1;
     currentX = 0;
+    updateData();
   }, 500);
+}
+
+function updateData() {
+  card.querySelector("h1").innerText = cardData[currentCardIndex];
+  currentCardIndex = (currentCardIndex + 1) % cardData.length;
+  inactiveCard.querySelector("h1").innerText = cardData[currentCardIndex];
+}
+
+function SaveJob() {
+  alert("It's a match, don't forget to apply!");
+  savedJobs.push(cardData[currentCardIndex]);
 }
