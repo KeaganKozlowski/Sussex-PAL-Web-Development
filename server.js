@@ -8,6 +8,8 @@ const bodyParser = require('body-parser');
 const app = express();
 app.use(bodyParser.json());
 
+let pool;
+
 if (!process.env.USER || !process.env.PASSWORD) {
     console.error("Error: USER or PASSWORD environment variables are not set.");
     const pool = mysql.createPool({
@@ -47,3 +49,21 @@ app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
 
+
+//Shutdown process
+const shutdown = () => {
+    console.log('Shutting down server...');
+    server.close(() => {
+        console.log('HTTP server closed.');
+        pool.end().then(() => {
+            console.log('MySQL pool closed.');
+            process.exit(0);
+        }).catch(err => {
+            console.error('Error closing MySQL pool:', err);
+            process.exit(1);
+        });
+    });
+};
+
+process.on('SIGINT', shutdown);
+process.on('SIGTERM', shutdown);
