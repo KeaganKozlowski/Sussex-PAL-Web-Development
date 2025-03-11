@@ -12,7 +12,7 @@ let pool;
 
 if (!process.env.USER || !process.env.PASSWORD) {
     console.error("Error: USER or PASSWORD environment variables are not set.");
-    const pool = mysql.createPool({
+    pool = mysql.createPool({
         host: 'krier.uscs.sussex.ac.uk',
         user: 'kk544',
         password: 'Mysql_627115',
@@ -23,7 +23,7 @@ if (!process.env.USER || !process.env.PASSWORD) {
     });
     
 } else {
-    const pool = mysql.createPool({
+    pool = mysql.createPool({
         host: 'krier.uscs.sussex.ac.uk',
         user: process.env.USER,
         password: process.env.PASSWORD,
