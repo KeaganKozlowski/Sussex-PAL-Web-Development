@@ -63,6 +63,9 @@ function onLeftClick() {
 
 function onRightClick() {
   animateCard(1);
+  setTimeout(() => {
+    SaveJob();
+  }, 500);
 }
 
 function animateCard(direction) {
@@ -74,7 +77,6 @@ function animateCard(direction) {
 
   // Reset card position after animation
   setTimeout(() => {
-    SaveJob();
     card.style.transition = "none";
     card.style.transform = "translateX(0) rotate(0deg)";
     card.style.opacity = 1;
