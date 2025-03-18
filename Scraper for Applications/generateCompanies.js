@@ -32,8 +32,6 @@ async function fetchAllCompanies() {
     console.log("New list of companies and length:",companies,companies.length);
 }
 
-fetchAllCompanies();
-
 //Calling the api and using that to search for each company
 ///Dictionary to store the companies and their positions
 let jobs = {};
@@ -41,7 +39,7 @@ let jobs = {};
 async function fetchJobsForCompanies(company){
     const options = {
         method: 'GET',
-        url: `https://indeed12.p.rapidapi.com/${company}/Ubisoft/jobs`,
+        url: `https://indeed12.p.rapidapi.com/company/${company}/jobs`, //Initally to test this was set to Ubisoft
         params: {
           locality: 'gb',
           start: '1'
@@ -55,7 +53,7 @@ async function fetchJobsForCompanies(company){
       try {
           const response = await axios.request(options);
           console.log(response.data);
-          jobs[company] = response;
+          jobs[company] = response.data;
       } catch (error) {
           console.error(error);
       }
@@ -64,7 +62,25 @@ async function fetchJobsForCompanies(company){
 async function fetchAllJobsForCompanies(){
     for (const company of companies){
         await fetchJobsForCompanies(company);
+        ;
     }
-    console.log(jobs)
+    console.log(jobs);
 }
+
+async function main(){
+    await fetchAllCompanies();
+    await fetchAllJobsForCompanies();
+    //Writing data to the file so I can store for later so I don't need to make anymore API calls
+    const fs = require('fs');
+    try {
+        fs.writeFileSync('JobsWithCompanies.txt', JSON.stringify(jobs, null, 2));
+        console.log("Done successfully")
+    } catch (error){
+        console.log("This is the error: ",error);
+    }
+}
+
+main();
+
+
 
