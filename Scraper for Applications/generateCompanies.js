@@ -73,7 +73,7 @@ async function main(){
     //Writing data to the file so I can store for later so I don't need to make anymore API calls
     const fs = require('fs');
     try {
-        fs.writeFileSync('JobsWithCompanies.txt', JSON.stringify(jobs, null, 2));
+        fs.writeFileSync('JobsWithCompanies.json', JSON.stringify(jobs, null, 2));
         console.log("Done successfully")
     } catch (error){
         console.log("This is the error: ",error);
