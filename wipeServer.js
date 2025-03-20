@@ -11,25 +11,20 @@ var con = mysql.createConnection({
 con.connect((err) => {
     if (err) throw err;
     console.log('Connected to the database');
-  
-    // Query to get all table names
+    //Query to get all table names
     const query = "SHOW TABLES";
-  
     con.query(query, (err, results) => {
       if (err) throw err;
-  
-      // Loop through each table and truncate it
+      //Loop through each table and truncate it
       results.forEach((row) => {
         const tableName = row[`Tables_in_${con.config.database}`];
         const truncateQuery = `TRUNCATE TABLE ${tableName}`;
-  
         con.query(truncateQuery, (err) => {
           if (err) throw err;
           console.log(`Truncated table: ${tableName}`);
         });
       });
-  
-      // Close the connection
+      //Close the connection
       con.end();
     });
   });
