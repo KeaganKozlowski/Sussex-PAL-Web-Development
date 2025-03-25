@@ -4,5 +4,6 @@ CREATE TABLE Jobs (
     Company VARCHAR(255) NOT NULL,
     Description TEXT,
     Location VARCHAR(255),
+    Url VARCHAR(255),
     PostedDate DATETIME DEFAULT CURRENT_TIMESTAMP
 );
