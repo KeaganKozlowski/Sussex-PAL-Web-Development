@@ -2,6 +2,7 @@
 
 var mysql = require('mysql2');
 
+///For one off connection to check that it works properly
 var con = mysql.createConnection({
     host: 'krier.uscs.sussex.ac.uk',
     user: 'kk544',
