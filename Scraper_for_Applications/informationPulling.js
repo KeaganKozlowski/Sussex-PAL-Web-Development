@@ -15,17 +15,25 @@ const pool = mysql.createPool({
 });
 
 async function insertJobs(){
+    let con;
     try {
-        const con = await pool.getConnection();
+        con = await pool.getConnection();
         for (const company in data){
             if (data.hasOwnProperty(company)){
                 const jobs = data[company];
+                console.log("This is a test");
+                console.log(jobs);
+                //Check that jobs is of type array, for error handling
+                if (!Array.isArray(jobs)){
+                    console.error("Jobs is not a list");
+                    continue;
+                }
                 for (const job of jobs){
                     const query = `INSERT INTO Jobs(Title, Company, Location, Url) VALUES (?,?,?,?)`;
                     const jobTitle = job.title || 'Unknown';
                     const location = job.location || 'Unknown';
-                    const url = "https://uk.indeed.com/viewjob?jk=" + job.id || 'Unknown';
-                    await con.query(query, [company, jobs, location, url]);
+                    const url = "https://uk.indeed.com/viewjob?jk=" + (job.id || 'Unknown');
+                    await con.query(query, [company, jobTitle, location, url]);
                 }
             }
         }
@@ -33,6 +41,8 @@ async function insertJobs(){
         con.release();
     } catch (err){
         console.error('Error'+err);
+    } finally {
+        if (con) con.release();
     }
 };
 
